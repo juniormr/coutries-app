@@ -10,6 +10,8 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [searchfield, setSearchfield] = useState('');
   const [searchregion, setSearchregion] = useState('');
+  const [name, setName] = useState('');
+  const [border, setBorder] = useState('');
   const [clicked, setClicked] = useState(false);
   const [darkmode, setDarkmode] = useState(false);
 
@@ -23,6 +25,9 @@ function App() {
     palette:{
       type:"light"
     },
+    primary: {
+  
+    },
   });
 
   const themed = createMuiTheme({
@@ -32,7 +37,6 @@ function App() {
   });
 
   const theme = darkmode? themed:themel;
-  
 
   const onSearchChange = (event) => {
     setSearchfield(event.target.value)
@@ -42,49 +46,71 @@ function App() {
     setSearchregion(event.target.value)
   }
 
-  const onClick = (event) => {
+  const onClick = (countryname) => {
     setClicked(!clicked)
+    setName(countryname)
   }
 
-   const onBackclick = (event) => {
+   const onBackclick = () => {
     setClicked(!clicked)
+    setName('')
+    setBorder('')
+    setSearchregion('')
   }
 
-  const onDarkmode = (event) => {
+  const onBorderClick = (name) => {
+    setBorder(name)
+  }
+
+  const onDarkmode = () => {
     setDarkmode(!darkmode)
   }
 
-  const filteredcountries = countries.filter(country=>{
-    if(country.region.toLowerCase()!= null){
-      return country.name.toLowerCase().includes(searchfield.toLowerCase()) && country.region.toLowerCase().includes(searchregion.toLowerCase());
+  const filteredcountries = countries.filter(country => {
+
+    if(!name){
+      if(country.region){
+        return country.name.toLowerCase().includes(searchfield.toLowerCase()) && country.region.toLowerCase().includes(searchregion.toLowerCase());
+      }
+
+      else{
+        return country.name.toLowerCase().includes(searchfield.toLowerCase());
+      }
     }
 
-    else{
-      return country.name.toLowerCase().includes(searchfield.toLowerCase());
+    else if(border) {
+        return country.alpha3Code.toLowerCase().includes(border.toLowerCase());
+      }
+
+    else{  
+        return country.name.toLowerCase().includes(name.toLowerCase());
     }
     })
 
-    return (clicked) ? 
+    return (
       (
         <div>
           <ThemeProvider theme={theme}>
           <CssBaseline />
             <Navigation dark={onDarkmode}/>
-            <BackButton back={onBackclick} search={searchfield}/>
-            <CountryDetails countries={filteredcountries} click={onClick}/>
+            { clicked
+
+                ? <div>
+                    <BackButton back={onBackclick} />
+                    <CountryDetails countries={filteredcountries} borderclick={onBorderClick}/>
+                  </div>
+
+                :
+
+                  <div>
+                    <SearchBox searchChange={onSearchChange} searchRegion={onSearchRegion} />
+                    <CardList countries={filteredcountries} click={onClick}/>
+                  </div>
+            }
+
           </ThemeProvider>
         </div>
         )
-      : 
-      (
-        <div>
-          <ThemeProvider theme={theme}>
-          <CssBaseline />
-            <Navigation dark={onDarkmode}/>
-            <SearchBox searchChange={onSearchChange} searchRegion={onSearchRegion} />
-            <CardList countries={filteredcountries} click={onClick}/>
-          </ThemeProvider>
-        </div>
       );
   }
 

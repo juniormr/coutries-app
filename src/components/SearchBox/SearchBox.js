@@ -33,7 +33,7 @@ const SearchBox = ({searchfield,searchregion,searchChange,searchRegion}) =>  {
         />
       </form>
       <FormControl variant="outlined" size="small">
-          <InputLabel>.</InputLabel>
+          <InputLabel>------</InputLabel>
           <Select
             native
             onChange={searchRegion}

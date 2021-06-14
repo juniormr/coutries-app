@@ -21,7 +21,7 @@ const SimpleCard = ({flagurl,name,population,region,capital, click}) =>  {
   const classes = useStyles();  
   return (
     <Card className={classes.root} variant="outlined" >
-      <CardActionArea value= {name} onClick={click}>
+      <CardActionArea value= {name} onClick={() => click(name)}>
         <CardMedia
           className={classes.media}
           image={flagurl}

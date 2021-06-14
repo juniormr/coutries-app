@@ -17,7 +17,7 @@ const BackButton = ({back}) =>  {
     <Grid className={classes.gridContainer} >
       <Button 
         variant="contained"
-        color="default"
+        
         size="small"
         startIcon={<KeyboardBackspaceRoundedIcon />}
         onClick={back}

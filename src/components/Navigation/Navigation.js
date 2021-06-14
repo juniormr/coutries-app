@@ -1,6 +1,5 @@
 import React from 'react';
-import './Navigation.css'
-import { makeStyles, Grid, Switch, FormControlLabel} from '@material-ui/core';
+import { makeStyles, Grid, Switch, FormControlLabel, Paper} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,16 +17,18 @@ const useStyles = makeStyles((theme) => ({
 const Navigation = ({dark}) => {
 	const classes = useStyles();
 	return(
-		<Grid className={classes.root}>
-			<h2 >Where in the world?</h2>
-			 <FormControlLabel
-		        control={<Switch 
-		        color="default"
-		        // checked={checked} 
-		        onChange={dark} 
-		        />}
-		        label="Dark Mode"
-		      />
+		<Grid >
+			<Paper className={classes.root} elevation={0} variant="outlined">
+				<h2 >Where in the world?</h2>
+				 <FormControlLabel
+			        control={<Switch 
+			        color="default"
+			        // checked={checked} 
+			        onChange={dark} 
+			        />}
+			        label="Dark Mode"
+			      />
+		  </Paper>
 		</Grid>
 		);
 }
