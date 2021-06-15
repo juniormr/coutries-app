@@ -25,14 +25,23 @@ function App() {
     palette:{
       type:"light"
     },
-    primary: {
-  
+    typography: {
+    fontFamily: [
+      'Nunito Sans',
+      'sans-serif',
+    ].join(','),
     },
   });
 
   const themed = createMuiTheme({
     palette:{
       type:"dark"
+    },
+    typography: {
+    fontFamily: [
+      'Nunito Sans',
+      'sans-serif',
+    ].join(','),
     },
   });
 
