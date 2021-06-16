@@ -1,16 +1,15 @@
 import React from 'react';
-import {Typography, makeStyles, Grid, Button} from '@material-ui/core';
+import {Typography, makeStyles, Grid, Button, Box} from '@material-ui/core';
 
 const useStyles = makeStyles({
    img: {
-    minHeight: 100,
-    minWidth: 300,
-    paddingRight: "40px",
+    minWidth: 420,
+    maxHeight: 500,
   },
 
   gridContainer: {
-    paddingLeft: "40px",
-    paddingRight: "40px",
+    paddingLeft: "45px",
+    paddingRight: "20px",
     paddingTop: "60px",
   },
 
@@ -26,17 +25,27 @@ const useStyles = makeStyles({
 
    infoContainer:{
     paddingTop: "20px",
-    fontWeight: 600
+    fontWeight: 600,
+    paddingLeft: "22px",
   },
 
   buttonContainer: {
-    marginLeft: "10px",
+    marginLeft: "5px",
     marginTop: "4px",
   },
 
   bold: {
     fontWeight: 600
-  }
+  },
+
+  buttonBox: {
+    marginLeft: "18px",
+  },
+
+  bbox: {
+      marginTop: "8px",
+      fontWeight: 600
+    },
   
 });
 
@@ -55,62 +64,99 @@ const classes = useStyles();
                   </Typography>
           <Grid container spacing={0} direction="row" className={classes.detailsContainer}> 
             <Grid item xs container direction="column" >
-                    <Typography variant="body1" className={classes.bold}>
-                      Native Name:
-                    </Typography >
-                    <Typography variant="body1" className={classes.bold}>
-                      Population: 
-                    </Typography>
-                    <Typography variant="body1" className={classes.bold}>
-                      Region: 
-                    </Typography>
-                    <Typography variant="body1" className={classes.bold}>
-                      Capital: 
-                    </Typography>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Native Name:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].nativeName}
+                  </Typography >
+                </Box>
+              </Box>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Population:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].population}
+                  </Typography >
+                </Box>
+              </Box>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Ragion:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].subregion}
+                  </Typography >
+                </Box>
+              </Box>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Capital:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].capital}
+                  </Typography >
+                </Box>
+              </Box>
             </Grid> 
-
-             <Grid item xs container direction="column" >
-                    <Typography >
-                      {countries[0].nativeName}
-                    </Typography >
-                    <Typography variant="body1" >
-                      {countries[0].population}
-                    </Typography>
-                    <Typography variant="body1">
-                      {countries[0].subregion}
-                    </Typography>
-                    <Typography variant="body1">
-                      {countries[0].capital}
-                    </Typography>
-            </Grid>
             <Grid item xs container direction="column" >
-                    <Typography variant="body1" className={classes.bold}>
-                      Top Level Domain: 
-                    </Typography>
-                    <Typography variant="body1" className={classes.bold}>
-                      Currencies: 
-                    </Typography>
-                    <Typography variant="body1" className={classes.bold}>
-                      Languages: 
-                    </Typography>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Top Level Domain:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].topLevelDomain}
+                  </Typography >
+                </Box>
+              </Box>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Currencies:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].currencies[0].name}
+                  </Typography >
+                </Box>
+              </Box>
+              <Box display="flex" flexDirection="row" p={1} m={1} >
+                <Box p={1} >
+                  <Typography variant="body1" className={classes.bold}>
+                    Languages:
+                  </Typography >
+                </Box>
+                <Box p={1} >
+                  <Typography >
+                    {countries[0].languages[0].name}
+                  </Typography >
+                </Box>
+              </Box>
             </Grid>
-            <Grid item xs container direction="column" >
-                    <Typography variant="body1">
-                      {countries[0].topLevelDomain}
-                    </Typography>
-                    <Typography variant="body1">
-                      {countries[0].currencies[0].name}
-                    </Typography>
-                    <Typography variant="body1">
-                      {countries[0].languages[0].name}
-                    </Typography>
-            </Grid> 
           </Grid>
-          <Grid item xs container direction="row"  alignItems="center" className={classes.bordersContainer}>
-              <Typography >
+          <Box display="flex" flexDirection="row" p={1} m={1} className={classes.buttonBox}>
+              <Typography className={classes.bbox}>
                   Border Countries: 
               </Typography>
-
+              <Grid item xs container direction="row" >
               {countries[0].borders.map((country,i) =>{
                 return(
                       <Button key={i} className={classes.buttonContainer} variant="outlined" onClick={() => borderclick(countries[0].borders[i])}>
@@ -119,8 +165,8 @@ const classes = useStyles();
                       </Button>
               );
               })}
-              
-          </Grid>
+              </Grid>
+          </Box>
         </Grid>
       </Grid>
     </div>
