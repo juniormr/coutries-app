@@ -10,11 +10,15 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+    fontWeight: 600
   },
    media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  bold: {
+    fontWeight: 600
+  }
 });
 
 const SimpleCard = ({flagurl,name,population,region,capital, click}) =>  {
