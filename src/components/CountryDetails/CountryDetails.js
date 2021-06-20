@@ -3,8 +3,8 @@ import {Typography, makeStyles, Grid, Button, Box} from '@material-ui/core';
 
 const useStyles = makeStyles({
    img: {
-    minWidth: 420,
-    maxHeight: 500,
+    minWidth: 300,
+    maxHeight: 450,
   },
 
   gridContainer: {
